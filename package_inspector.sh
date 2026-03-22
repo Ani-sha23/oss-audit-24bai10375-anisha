@@ -1,26 +1,24 @@
 #!/bin/bash
-# Script 2: Package Inspector
+# Script 2: FOSS Package Inspector
 
-PACKAGE="linux-image-$(uname -r)"
+PACKAGE="bash"
 
-if dpkg -l | grep -q $PACKAGE; then
+echo "Checking if $PACKAGE is installed..."
+
+if command -v $PACKAGE >/dev/null 2>&1; then
     echo "$PACKAGE is installed."
-    dpkg -l | grep $PACKAGE
 else
     echo "$PACKAGE is NOT installed."
 fi
 
 case $PACKAGE in
-    linux-image*)
-        echo "Linux Kernel: Core of the operating system"
+    bash)
+        echo "Bash: The default shell used in most Linux systems."
         ;;
-    apache2)
-        echo "Apache: Web server powering the internet"
-        ;;
-    mysql)
-        echo "MySQL: Open-source database system"
+    git)
+        echo "Git: Version control system for developers."
         ;;
     *)
-        echo "Unknown package"
+        echo "General open-source software package."
         ;;
 esac
