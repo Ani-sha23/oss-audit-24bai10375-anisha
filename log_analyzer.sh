@@ -1,12 +1,13 @@
 #!/bin/bash
-# Script 4: Log Analyzer
+# Script 4: Log File Analyzer
 
-LOGFILE=$1
-KEYWORD=${2:-"error"}
+LOGFILE="/c/Windows/System32/drivers/etc/hosts"
+KEYWORD="localhost"
+
 COUNT=0
 
 if [ ! -f "$LOGFILE" ]; then
-    echo "Error: File not found"
+    echo "Error: File not found."
     exit 1
 fi
 
@@ -16,7 +17,7 @@ while IFS= read -r LINE; do
     fi
 done < "$LOGFILE"
 
-echo "Keyword '$KEYWORD' found $COUNT times"
+echo "Keyword '$KEYWORD' found $COUNT times."
 
-echo "Last 5 matches:"
+echo "Last 5 matching lines:"
 grep -i "$KEYWORD" "$LOGFILE" | tail -5
